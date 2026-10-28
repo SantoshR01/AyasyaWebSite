@@ -36,6 +36,21 @@ python3 -m http.server 8000
   client via a `mailto:` link — see the comment in that file for how to wire
   it up to a real form backend (e.g. Formspree) instead.
 
+## Client testimonials (images & video)
+
+The "What our clients say" section on the home page (`index.html`, search for
+`Client testimonials`) ships with placeholders. To fill it in:
+
+- **Logos** go in `images/clients/` (SVG or PNG, transparent background).
+- **Headshots** go in `images/testimonials/` (square, ~200px, under 100 KB).
+- **Video**: either add a compressed MP4 (under ~10 MB) to `videos/` and set
+  `data-video="videos/your-file.mp4"`, or upload to YouTube as *unlisted* and
+  set `data-youtube="VIDEO_ID"`. Add `data-poster="images/testimonials/poster.jpg"`
+  for a cover image. The video only loads when a visitor clicks play.
+
+Get each client's written permission before publishing their name, logo,
+photo, or video.
+
 ## Deploying to GitHub Pages
 
 1. **Create a new repository** on GitHub (e.g. `ayasya-website`). Don't

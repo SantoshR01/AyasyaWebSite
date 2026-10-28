@@ -42,6 +42,37 @@ document.addEventListener('DOMContentLoaded', function () {
     reveals.forEach(function (el) { observer.observe(el); });
   }
 
+  // Testimonial videos: show a poster with a play button, load the player on click
+  document.querySelectorAll('.video-frame').forEach(function (frame) {
+    var button = frame.querySelector('.play');
+    var label = frame.querySelector('.play-label');
+    var src = frame.dataset.video;
+    var youtube = frame.dataset.youtube;
+    if (frame.dataset.poster) frame.style.backgroundImage = 'url("' + frame.dataset.poster + '")';
+    if (!button) return;
+    if (!src && !youtube) { button.disabled = true; return; }
+
+    if (label) label.textContent = 'Watch the story';
+    button.addEventListener('click', function () {
+      var player;
+      if (src) {
+        player = document.createElement('video');
+        player.src = src;
+        player.controls = true;
+        player.autoplay = true;
+        player.playsInline = true;
+      } else {
+        player = document.createElement('iframe');
+        player.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(youtube) + '?autoplay=1&rel=0';
+        player.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        player.allowFullscreen = true;
+        player.title = 'Client testimonial video';
+      }
+      button.remove();
+      frame.appendChild(player);
+    });
+  });
+
   // Hero "agent console": reveal lines one by one and advance the pipeline
   var consoleBody = document.getElementById('console');
   var pipeline = document.getElementById('pipeline');
