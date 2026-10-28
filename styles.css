@@ -2,8 +2,8 @@
    Ayasya Technologies — design tokens
    ============================================================ */
 :root {
-  --paper:  #F3F2EE;   /* page background — cool off-white, not cream */
-  --panel:  #EAE8E1;   /* slightly deeper panel background */
+  --paper:  #DFF2E1;   /* page background — light green */
+  --panel:  #CDE8D0;   /* slightly deeper green panel background */
   --ink:    #1E2A32;   /* primary text — deep charcoal-blue */
   --slate:  #435868;   /* brand primary — muted blue-grey */
   --steel:  #7C8B96;   /* secondary text / muted tone */
