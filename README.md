@@ -11,7 +11,7 @@ about.html      About
 services.html   Services
 contact.html    Contact
 styles.css      All styles (shared across pages)
-script.js       Mobile nav toggle
+script.js       Mobile nav, scroll reveals, hero console animation
 ```
 
 ## Preview it locally
