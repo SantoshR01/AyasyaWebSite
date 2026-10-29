@@ -36,20 +36,24 @@ python3 -m http.server 8000
   client via a `mailto:` link — see the comment in that file for how to wire
   it up to a real form backend (e.g. Formspree) instead.
 
-## Client testimonials (images & video)
+## Client stories (logos, quotes, video)
 
 The "What our clients say" section on the home page (`index.html`, search for
-`Client testimonials`) ships with placeholders. To fill it in:
+`Client stories`) currently features Remitrix and BReady.
 
-- **Logos** go in `images/clients/` (SVG or PNG, transparent background).
-- **Headshots** go in `images/testimonials/` (square, ~200px, under 100 KB).
-- **Video**: either add a compressed MP4 (under ~10 MB) to `videos/` and set
-  `data-video="videos/your-file.mp4"`, or upload to YouTube as *unlisted* and
-  set `data-youtube="VIDEO_ID"`. Add `data-poster="images/testimonials/poster.jpg"`
-  for a cover image. The video only loads when a visitor clicks play.
+- **Logos** live in `images/clients/` (PNG or SVG; a white or transparent
+  background works, since logo tiles are white). To add a client, add an
+  `<a class="logo">` to the logo row and a `<figure class="card quote story">`
+  to the `.stories` grid.
+- **Headshots** go in `images/testimonials/` (square, ~200px, under 100 KB)
+  and replace the initials inside `.avatar`.
+- **Video**: the lazy-loading player in `script.js` still supports a
+  `.video-card` with `data-video="videos/your-file.mp4"` (compressed MP4 under
+  ~10 MB) or `data-youtube="VIDEO_ID"` (unlisted YouTube video), plus an
+  optional `data-poster`. The video only loads when a visitor clicks play.
 
 Get each client's written permission before publishing their name, logo,
-photo, or video.
+photo, quote or video.
 
 ## Deploying to GitHub Pages
 

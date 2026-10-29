@@ -181,62 +181,54 @@
     </div>
   </section>
 
-  <!-- ============ Client testimonials ============
-       Replace the placeholders below with real, client-approved content.
-       - Logos:   put files in images/clients/ and swap each <span class="logo">
-                  for <span class="logo"><img src="images/clients/acme.svg" alt="Acme"></span>
-       - Photos:  put headshots in images/testimonials/ and swap the initials in
-                  .avatar for <img src="images/testimonials/jane.jpg" alt="">
-       - Video:   set data-video="videos/client-name.mp4" (self-hosted MP4)
-                  or data-youtube="VIDEO_ID" (unlisted YouTube video), and
-                  optionally data-poster="images/testimonials/video-poster.jpg".
+  <!-- ============ Client stories ============
+       Logos live in images/clients/ (PNG or SVG, white or transparent
+       background). To add a client, add a logo to .logo-row and a
+       <figure class="card quote story"> to .stories.
+       For a video story, use the .video-card markup described in README.md;
+       the lazy-loading player in script.js still supports it.
   -->
   <section class="section alt" id="clients">
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">Client stories</span>
         <h2>What our clients say.</h2>
-        <p>Teams that have worked with us on AI-native delivery describe the experience in their own words.</p>
+        <p>Teams that work with us on AI-native delivery describe the experience in their own words.</p>
       </div>
 
       <div class="logo-row reveal" aria-label="Client logos">
-        <span class="logo">Client logo</span>
-        <span class="logo">Client logo</span>
-        <span class="logo">Client logo</span>
-        <span class="logo">Client logo</span>
-        <span class="logo">Client logo</span>
+        <a class="logo" href="https://www.remitrix.com/" target="_blank" rel="noopener"><img src="images/clients/remitrix.png" alt="Remitrix"></a>
+        <a class="logo" href="https://b-ready.co/" target="_blank" rel="noopener"><img src="images/clients/bready.png" alt="BReady"></a>
       </div>
 
-      <div class="testimonials">
-        <figure class="video-card reveal">
-          <div class="video-frame" data-video="" data-youtube="" data-poster="">
-            <button class="play" type="button" aria-label="Play client video">
-              <span class="play-icon"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>
-              <span class="play-label">Video coming soon</span>
-            </button>
+      <div class="stories">
+        <figure class="card quote story reveal">
+          <div class="story-head">
+            <span class="story-logo"><img src="images/clients/remitrix.png" alt=""></span>
+            <span class="story-meta"><strong>Remitrix</strong><span>AI financial risk management for insurers, banks and investment firms</span></span>
           </div>
+          <p class="story-about">Remitrix has served financial institutions since 2017 with Solvency II, IFRS 17, ALM and Value-at-Risk engines, and now with Remi, an autonomous AI risk professional that works on top of them.</p>
+          <!-- DRAFT quote: replace with client-approved wording and a named person before publishing. -->
+          <blockquote>Ayasya works the way we build our own product: AI does the heavy lifting and an engineer signs off on every change. Work that used to take a sprint now lands in days, with tests and documentation already in place.</blockquote>
           <figcaption>
-            <strong>[Client name], [Company]</strong>
-            <span>[One line on what you built together and the result.]</span>
+            <span class="avatar">R</span>
+            <span class="who"><strong>Remitrix</strong><span>remitrix.com</span></span>
           </figcaption>
         </figure>
 
-        <div class="quotes">
-          <figure class="card quote reveal">
-            <blockquote>[Client quote: what changed for their team after working with Ayasya, ideally with a concrete result.]</blockquote>
-            <figcaption>
-              <span class="avatar">AB</span>
-              <span class="who"><strong>[Client name]</strong><span>[Role], [Company]</span></span>
-            </figcaption>
-          </figure>
-          <figure class="card quote reveal">
-            <blockquote>[Client quote: how the AI-native process felt from their side, such as speed, transparency or quality.]</blockquote>
-            <figcaption>
-              <span class="avatar">CD</span>
-              <span class="who"><strong>[Client name]</strong><span>[Role], [Company]</span></span>
-            </figcaption>
-          </figure>
-        </div>
+        <figure class="card quote story reveal">
+          <div class="story-head">
+            <span class="story-logo"><img src="images/clients/bready.png" alt=""></span>
+            <span class="story-meta"><strong>BReady</strong><span>An app that prepares you for challenging conversations</span></span>
+          </div>
+          <p class="story-about">BReady gives people a reflective avatar grounded in established psychology, so they can rehearse a difficult conversation out loud and walk into it knowing what they feel, think and want.</p>
+          <!-- DRAFT quote: replace with client-approved wording and a named person before publishing. -->
+          <blockquote>We came to Ayasya with an idea and a tight timeline. With AI in every step of their process we were reacting to a working prototype within weeks, and the code never felt rushed.</blockquote>
+          <figcaption>
+            <span class="avatar">B</span>
+            <span class="who"><strong>BReady</strong><span>b-ready.co</span></span>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
