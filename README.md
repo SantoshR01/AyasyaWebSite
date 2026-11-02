@@ -11,19 +11,23 @@ about.html      About
 services.html   Services
 contact.html    Contact
 styles.css      All styles (shared across pages)
-script.js       Mobile nav, scroll reveals, hero console animation
+script.js       Mobile nav, scroll reveals, hero console animation, testimonial video player
+favicon.svg     Browser-tab icon (PNG fallbacks live in images/)
+images/         Client logos, icons and the social-sharing (Open Graph) image
+robots.txt      Search engine rules, points at sitemap.xml
+sitemap.xml     List of pages for search engines (update lastmod when a page changes)
+CNAME           Custom domain for GitHub Pages
 ```
 
 ## Preview it locally
 
-Just open `index.html` in a browser — no server required. Or, for a proper
-local server (recommended so relative paths behave the same as they will
-online):
+Open `index.html` in a browser, or run any static file server from the
+repository folder so relative paths behave the same as they will online,
+for example:
 
 ```bash
-cd ayasya-site
-python3 -m http.server 8000
-# then open http://localhost:8000
+npx serve .
+# then open the URL it prints
 ```
 
 ## Editing content
@@ -55,35 +59,23 @@ The "What our clients say" section on the home page (`index.html`, search for
 Get each client's written permission before publishing their name, logo,
 photo, quote or video.
 
-## Deploying to GitHub Pages
+## Deploying
 
-1. **Create a new repository** on GitHub (e.g. `ayasya-website`). Don't
-   initialize it with a README (you already have files here).
+The site is hosted on GitHub Pages from the `main` branch of
+`SantoshR01/AyasyaWebSite` (root folder), with the custom domain
+`ayasyatechnologies.com` set in the `CNAME` file.
 
-2. **Push this folder to it**, from inside the `ayasya-site` folder:
+**Every push to `main` publishes the live site**, usually within a minute
+or two. Preview changes locally before pushing.
 
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial site"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/ayasya-website.git
-   git push -u origin main
-   ```
+If the domain ever needs to be set up again: GitHub repo → Settings → Pages,
+set the source to `main` / root, enter the custom domain, and make sure the
+DNS at the registrar has a CNAME (or A records) pointing at GitHub Pages.
 
-3. **Turn on GitHub Pages**:
-   - On GitHub, open the repo → **Settings** → **Pages** (left sidebar).
-   - Under "Build and deployment", set **Source** to **Deploy from a
-     branch**.
-   - Set **Branch** to `main` and folder to `/ (root)`, then **Save**.
-   - After a minute or two, GitHub will show the live URL — typically
-     `https://<your-username>.github.io/ayasya-website/`.
+## Social previews and icons
 
-4. **Custom domain (optional)**: if you own `ayasyatechnologies.com`, add it
-   under the same Pages settings screen, then create a `CNAME` record at
-   your DNS provider pointing to `<your-username>.github.io`. GitHub will
-   also add a `CNAME` file to your repo automatically once you save the
-   custom domain there.
-
-That's it — any time you push changes to `main`, GitHub Pages redeploys
-automatically within a minute or so.
+- `images/og-image.png` (1200×630) is the picture shown when a page is shared
+  on LinkedIn, WhatsApp, Slack or X. Every page points at it via
+  `og:image`; replace the file to change the preview everywhere.
+- `favicon.svg` is the tab icon; `images/favicon-32.png` and
+  `images/apple-touch-icon.png` are fallbacks for older browsers and iOS.
