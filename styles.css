@@ -103,6 +103,18 @@ p  { margin: 0 0 1em; }
 }
 @keyframes blink { 50% { opacity: .35; } }
 
+/* ---------- Skip link (keyboard users) ---------- */
+.skip-link {
+  position: absolute; left: 1rem; top: -100px; z-index: 100;
+  padding: .6rem 1rem; border-radius: 999px;
+  background: var(--glow); color: var(--dark); font-weight: 600;
+}
+.skip-link:focus { top: 1rem; text-decoration: none; outline: 3px solid var(--dark); }
+
+/* ---------- 404 ---------- */
+.not-found { min-height: 60vh; display: flex; align-items: center; }
+.not-found .hero-actions { margin-top: 1.5rem; }
+
 /* ---------- Header / nav ---------- */
 .site-header {
   position: sticky;
@@ -476,17 +488,13 @@ p  { margin: 0 0 1em; }
 
 /* ---------- Client testimonials ---------- */
 .logo-row {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.5rem clamp(2rem, 6vw, 5rem);
   margin-bottom: clamp(2rem, 4vw, 3rem);
 }
-.logo-row .logo {
-  height: 84px; min-width: 200px; padding: .9rem 1.6rem;
-  display: grid; place-items: center;
-  background: #FFFFFF; border: 1px solid var(--line); border-radius: 12px;
-  transition: border-color .2s, box-shadow .2s, transform .2s;
-}
-.logo-row a.logo:hover { text-decoration: none; border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-2px); }
-.logo-row img { max-height: 52px; max-width: 180px; width: auto; }
+.logo-row .logo { display: grid; place-items: center; padding: .5rem; border-radius: 12px; transition: transform .2s, background .2s; }
+.logo-row a.logo:hover { text-decoration: none; transform: translateY(-2px); background: rgba(255, 255, 255, .5); }
+.logo-row img { max-height: 48px; max-width: 220px; width: auto; }
+.logo-row img.tall { max-height: 76px; }
 
 .stories { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); align-items: stretch; }
 @media (max-width: 860px) { .stories { grid-template-columns: 1fr; } }

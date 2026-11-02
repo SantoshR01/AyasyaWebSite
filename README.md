@@ -10,6 +10,7 @@ index.html      Home
 about.html      About
 services.html   Services
 contact.html    Contact
+404.html        Shown by GitHub Pages for any missing page
 styles.css      All styles (shared across pages)
 script.js       Mobile nav, scroll reveals, hero console animation, testimonial video player
 favicon.svg     Browser-tab icon (PNG fallbacks live in images/)
@@ -74,7 +75,7 @@ DNS at the registrar has a CNAME (or A records) pointing at GitHub Pages.
 
 ## Social previews and icons
 
-- `images/og-image.png` (1200×630) is the picture shown when a page is shared
+- `images/og-image.jpg` (1200×630) is the picture shown when a page is shared
   on LinkedIn, WhatsApp, Slack or X. Every page points at it via
   `og:image`; replace the file to change the preview everywhere.
 - `favicon.svg` is the tab icon; `images/favicon-32.png` and
