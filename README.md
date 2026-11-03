@@ -37,9 +37,12 @@ npx serve .
   change and edit it in place.
 - Colors, fonts, and spacing are all defined as CSS variables at the top of
   `styles.css` under `:root { ... }`.
-- The contact form (`contact.html`) currently opens the visitor's email
-  client via a `mailto:` link — see the comment in that file for how to wire
-  it up to a real form backend (e.g. Formspree) instead.
+- The contact form (`contact.html`) posts to FormSubmit (https://formsubmit.co),
+  which emails each submission to the address in the form's `action` URL. No
+  account is needed; the first submission triggers a one-time activation
+  email to that inbox. If the service cannot be reached, the page falls back
+  to opening the visitor's email client. To change the recipient, edit the
+  address in the `action` URL and in the `mailtoFallback` function.
 
 ## Client stories (logos, quotes, video)
 
