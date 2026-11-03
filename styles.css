@@ -376,6 +376,12 @@ p  { margin: 0 0 1em; }
 .section-head p { color: var(--muted); font-size: 1.08rem; }
 .dark .section-head p { color: var(--on-dark-muted); }
 
+/* ---------- Small layout helpers ---------- */
+.more-link { margin-top: 2rem; }
+.cards.tight { gap: 1rem; }
+.section.flush-top { padding-top: 0; }
+.contact-detail .note { font-weight: 400; }
+
 /* ---------- Cards ---------- */
 .cards { display: grid; gap: var(--gap); grid-template-columns: repeat(3, 1fr); }
 .cards.two { grid-template-columns: repeat(2, 1fr); }
@@ -493,7 +499,7 @@ p  { margin: 0 0 1em; }
 }
 .logo-row .logo { display: grid; place-items: center; padding: .5rem; border-radius: 12px; transition: transform .2s, background .2s; }
 .logo-row a.logo:hover { text-decoration: none; transform: translateY(-2px); background: rgba(255, 255, 255, .5); }
-.logo-row img { max-height: 48px; max-width: 220px; width: auto; }
+.logo-row img { max-height: 48px; max-width: 220px; width: auto; height: auto; }
 .logo-row img.tall { max-height: 76px; }
 
 .stories { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); align-items: stretch; }
@@ -504,7 +510,7 @@ p  { margin: 0 0 1em; }
   display: grid; place-items: center;
   background: #FFFFFF; border: 1px solid var(--line); border-radius: 10px;
 }
-.story-logo img { max-height: 100%; max-width: 100%; width: auto; object-fit: contain; }
+.story-logo img { max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; }
 .story-meta strong { display: block; font-family: var(--font-display); font-size: 1.05rem; }
 .story-meta span { font-size: .86rem; color: var(--muted); line-height: 1.4; display: block; }
 .story-about { font-size: .95rem; }
@@ -594,7 +600,7 @@ p  { margin: 0 0 1em; }
   margin-top: 1.4rem; padding: 1.2rem 1.4rem;
   background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
 }
-.service .deliver h4 {
+.service .deliver h3 {
   font-family: var(--font-mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase;
   color: var(--muted); margin-bottom: .75rem; font-weight: 500;
 }
@@ -643,7 +649,7 @@ a.contact-detail:hover { text-decoration: none; border-color: var(--accent); }
 .site-footer { background: var(--dark); color: var(--on-dark-muted); padding: 3.5rem 0 2rem; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; }
 @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr; } }
-.footer-grid h4 {
+.footer-grid h3 {
   font-family: var(--font-mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
   color: var(--on-dark); font-weight: 500;
 }
