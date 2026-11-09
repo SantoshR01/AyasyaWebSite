@@ -76,13 +76,13 @@
       <div class="reveal">
         <!--
           The form posts to FormSubmit (https://formsubmit.co), which emails
-          each submission to the address in the action URL. No account is
-          needed; the first submission triggers a one-time activation email
-          to that inbox. The script below sends it in the background and
-          shows a thank-you here. If the request fails (offline, blocked),
-          it falls back to opening the visitor's email client.
+          each submission to the address in the action URL (the form has been
+          activated for that address). FormSubmit then redirects back to this
+          page with ?sent=1, and the script below shows the thank-you message.
+          No JavaScript is required for the submission itself.
         -->
-        <form class="contact-form" id="contact-form" action="https://formsubmit.co/ajax/santosh@ayasyatechnologies.com" method="POST" novalidate>
+        <form class="contact-form" id="contact-form" action="https://formsubmit.co/santosh@ayasyatechnologies.com" method="POST">
+          <input type="hidden" name="_next" value="https://ayasyatechnologies.com/contact.html?sent=1">
           <input type="hidden" name="_subject" value="New enquiry from ayasyatechnologies.com">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
@@ -151,49 +151,22 @@
 <script src="script.js"></script>
 <script>
   (function () {
-    var form = document.getElementById('contact-form');
     var status = document.getElementById('form-status');
-    if (!form) return;
-    var button = form.querySelector('button[type="submit"]');
-
-    function show(kind, text) {
-      status.className = 'form-status ' + kind;
-      status.textContent = text;
+    var form = document.getElementById('contact-form');
+    if (!status || !form) return;
+    if (/[?&]sent=1(&|$)/.test(window.location.search)) {
+      status.className = 'form-status ok';
+      status.textContent = 'Thanks, your message has been sent. We will reply within one business day.';
+      form.scrollIntoView({ block: 'center' });
+      if (window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
     }
-
-    function mailtoFallback() {
-      var name = form.name.value, email = form.email.value;
-      var interest = form.interest.value, message = form.message.value;
-      var subject = encodeURIComponent('New inquiry from ' + name + ' — ' + interest);
-      var body = encodeURIComponent('Interested in: ' + interest + '\n\n' + message + '\n\n— ' + name + ' (' + email + ')');
-      window.location.href = 'mailto:santosh@ayasyatechnologies.com?subject=' + subject + '&body=' + body;
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      if (!window.fetch) { mailtoFallback(); return; }
-
-      button.disabled = true;
-      show('', 'Sending…');
-      // Give the service 15 seconds, then fall back to the email client.
-      var abort = window.AbortController ? new AbortController() : null;
-      var timer = abort && setTimeout(function () { abort.abort(); }, 15000);
-      fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form),
-        signal: abort ? abort.signal : undefined
-      }).then(function (res) {
-        return res.json().then(function (data) { return { ok: res.ok, data: data }; });
-      }).then(function (r) {
-        if (!r.ok || String(r.data.success) !== 'true') throw new Error(r.data.message || 'Request failed');
-        form.reset();
-        show('ok', 'Thanks, your message is on its way. We will reply within one business day.');
-      }).catch(function () {
-        show('error', 'We could not send that from the page, so we are opening your email client instead.');
-        mailtoFallback();
-      }).then(function () { if (timer) clearTimeout(timer); button.disabled = false; });
+    form.addEventListener('submit', function () {
+      var button = form.querySelector('button[type="submit"]');
+      if (button) button.disabled = true;
+      status.className = 'form-status';
+      status.textContent = 'Sending…';
     });
   })();
 </script>

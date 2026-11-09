@@ -38,11 +38,11 @@ npx serve .
 - Colors, fonts, and spacing are all defined as CSS variables at the top of
   `styles.css` under `:root { ... }`.
 - The contact form (`contact.html`) posts to FormSubmit (https://formsubmit.co),
-  which emails each submission to the address in the form's `action` URL. No
-  account is needed; the first submission triggers a one-time activation
-  email to that inbox. If the service cannot be reached, the page falls back
-  to opening the visitor's email client. To change the recipient, edit the
-  address in the `action` URL and in the `mailtoFallback` function.
+  which emails each submission to the address in the form's `action` URL and
+  then redirects back to the contact page with `?sent=1`, where a thank-you is
+  shown. The form is already activated for santosh@ayasyatechnologies.com. To
+  change the recipient, edit the address in the `action` URL; FormSubmit will
+  send a one-time activation email to the new address on first use.
 
 ## Client stories (logos, quotes, video)
 
