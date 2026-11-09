@@ -78,8 +78,8 @@
           The form posts to FormSubmit (https://formsubmit.co), which emails
           each submission to the address in the action URL (the form has been
           activated for that address). FormSubmit then redirects back to this
-          page with ?sent=1, and the script below shows the thank-you message.
-          No JavaScript is required for the submission itself.
+          page with ?sent=1 (the no-JavaScript path). With JavaScript, the script
+          below posts in the background and shows the thank-you on this page.
         -->
         <form class="contact-form" id="contact-form" action="https://formsubmit.co/santosh@ayasyatechnologies.com" method="POST">
           <input type="hidden" name="_next" value="https://ayasyatechnologies.com/contact.html?sent=1">
@@ -151,22 +151,52 @@
 <script src="script.js"></script>
 <script>
   (function () {
-    var status = document.getElementById('form-status');
     var form = document.getElementById('contact-form');
-    if (!status || !form) return;
-    if (/[?&]sent=1(&|$)/.test(window.location.search)) {
-      status.className = 'form-status ok';
-      status.textContent = 'Thanks, your message has been sent. We will reply within one business day.';
-      form.scrollIntoView({ block: 'center' });
-      if (window.history.replaceState) {
-        window.history.replaceState(null, '', window.location.pathname);
-      }
+    var status = document.getElementById('form-status');
+    if (!form || !status) return;
+    var button = form.querySelector('button[type="submit"]');
+    var thanks = 'Thanks, your message has been sent. We will reply within one business day.';
+
+    function show(kind, text) {
+      status.className = 'form-status ' + kind;
+      status.textContent = text;
     }
-    form.addEventListener('submit', function () {
-      var button = form.querySelector('button[type="submit"]');
-      if (button) button.disabled = true;
-      status.className = 'form-status';
-      status.textContent = 'Sending…';
+
+    // Returned here by FormSubmit's redirect (no-JavaScript path)
+    if (/[?&]sent=1(&|$)/.test(window.location.search)) {
+      show('ok', thanks);
+      form.scrollIntoView({ block: 'center' });
+      if (window.history.replaceState) window.history.replaceState(null, '', window.location.pathname);
+    }
+
+    // With JavaScript: post in the background and show the thank-you here.
+    // If anything goes wrong, submit the form normally instead.
+    form.addEventListener('submit', function (e) {
+      if (!window.fetch || !window.FormData || form.dataset.native === '1') return;
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      button.disabled = true;
+      show('', 'Sending…');
+      var abort = window.AbortController ? new AbortController() : null;
+      var timer = abort && setTimeout(function () { abort.abort(); }, 15000);
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'text/html,application/json' },
+        body: new FormData(form),
+        signal: abort ? abort.signal : undefined
+      }).then(function (res) {
+        return res.text().then(function (body) {
+          if (!res.ok || /needs Activation/i.test(body)) throw new Error('rejected');
+        });
+      }).then(function () {
+        form.reset();
+        show('ok', thanks);
+        button.disabled = false;
+      }).catch(function () {
+        // Fall back to a normal form post; FormSubmit shows its own thank-you page.
+        form.dataset.native = '1';
+        form.submit();
+      }).then(function () { if (timer) clearTimeout(timer); });
     });
   })();
 </script>
